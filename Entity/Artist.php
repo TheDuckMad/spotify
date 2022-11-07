@@ -1,83 +1,93 @@
 <?php
+
 namespace App\Entity;
-class Artist{
+
+class Artist extends Model
+{
+    
 
     public function __construct(
-        public string|null $id,
+        public string|null $id_artist,
+
         public string|null $name,
-        public int|null $followers,
-        public array|null $genders = [],
+
+        public int|null    $followers,
+
+        public array|null  $genders,
+
         public string|null $link,
-        public string|null $picture,){
+
+        public string|null $picture,
+        public int|null $id = null
+    )
+    {
+        $this->table = "artist";
     }
 
-    public function getId(): string {
-        return $this->id;
+    public function getId(): ?string
+    {
+        return $this->id_artist;
     }
-    
-    public function setId(string $id): self {
-        $this->id = $id;
+
+    public function setId(string $id_artist): self
+    {
+        $this->id_artist = $id_artist;
         return $this;
     }
 
-    public function getName(): string {
+    public function getName(): ?string
+    {
         return $this->name;
     }
-    
-    public function setName(string $name): self {
+
+    public function setName(string $name): self
+    {
         $this->name = $name;
         return $this;
     }
-    
-    public function getFollowers(): int {
-        return $this->followers;
-    }
-    
-    public function setFollowers(string $followers): self {
+
+    public function setFollowers(int $followers): self
+    {
         $this->followers = $followers;
         return $this;
     }
-    
-    public function getGenders(): array {
+
+    public function getFollowers(): ?int
+    {
+        return $this->followers;
+    }
+
+    public function getGenders(): ?array
+    {
         return $this->genders;
     }
-    
-    public function setGenders(string $genders): self {
+
+    public function setGenders(array $genders): self
+    {
         $this->genders = $genders;
         return $this;
     }
-    
-    public function getLink(): string {
+
+    public function getLink(): ?string
+    {
         return $this->link;
     }
-    
-    public function setLink(string $link): self {
+
+    public function setLink(string $link): self
+    {
         $this->link = $link;
         return $this;
     }
-    
-    public function getPicture(): ?string {
+
+
+    public function getPicture(): ?string
+    {
         return $this->picture;
     }
-    
-    public function setPicture(string $picture): self {
+
+    public function setPicture(string $picture): self
+    {
         $this->picture = $picture;
         return $this;
-    }
-
-    public function display(): void{
-        echo (
-            '<div class=col-md-4>
-                <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src=' . $this->getPicture() . 'alt="Image d album">
-                    <div class="card-body">
-                        <h5 class="card-title">Name : ' . $this->getName() . '</h5>
-                        <p class="card-text">Followers : ' . $this->getFollowers() .'</p>
-                        <p class="card-text">Id : ' . $this->getId() .'</p>
-                        <p class="card-text">Link : ' . $this->getLink() .'</p>
-                        <p class="card-text">Genres : ' . $this->getGenders() . '</p>
-                    </div>
-                </div>
-            </div>');
     }
 }
