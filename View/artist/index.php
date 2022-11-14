@@ -35,8 +35,19 @@ use App\Entity\Artist;
                 <div class="card-body">
                     <h5 class="card-title">Name : <?= $artist->getName()?></h5>
                     <p class="card-text">Followers : <?= $artist->getFollowers()?></p>
-                    <p class="card-text">Genres : <?= $artist->getGenders()?></p>
-                    <form class="d-flex searchform mb-4" action="/artist/fav_artist" method="post">  
+                    <p class="card-text">Genres : 
+                        <?php 
+                        if (count($artist->getGenders()) === 0) {
+                            echo 'Aucun';
+                        } else { 
+                            foreach($artist->getGenders() as $key => $gender) {
+                                if ($key === 0) 
+                                    echo $gender;
+                                echo ', ' . $gender;
+                            }
+                        } ?>
+                    </p>
+                    <form class="d-flex searchform mb-4" action="/artist/addFavArtist" method="post">  
                         <input name='artist' type='hidden' value='<?= json_encode($artist) ?>'>                      
                         <button class="btn btn-outline-success" type="submit">Favori</button>
                     </form>            

@@ -3,9 +3,7 @@
 namespace App\Entity;
 
 class Artist extends Model
-{
-    
-
+{  
     public function __construct(
         public string|null $id_artist,
 
@@ -18,6 +16,7 @@ class Artist extends Model
         public string|null $link,
 
         public string|null $picture,
+
         public int|null $id = null
     )
     {

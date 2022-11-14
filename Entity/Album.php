@@ -3,10 +3,8 @@
 namespace App\Entity;
 use App\Entity\Track;
 
-class Album 
+class Album extends Model
 {
-    public string|null $id;
-
     public function __construct(
         public string|null $id_album,
 
@@ -18,7 +16,9 @@ class Album
 
         public string|null $picture,
 
-        public array|null $tracks
+        public array|null $tracks,
+
+        public int|null $id = null
     )
     {
         $this->table = "album";

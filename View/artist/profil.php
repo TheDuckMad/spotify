@@ -31,6 +31,10 @@ use App\Entity\Album;
                     <h5 class="card-title">Name : <?= $album->getName()?></h5>
                     <p class="card-text">Date de sortie : <?= $album->getReleaseDate()?></p>
                     <p class="card-text">Total tracks : <?= $album->getTotalTracks()?></p>
+                    <form class="d-flex searchform mb-4" action="/artist/addFavAlbum" method="post">  
+                        <input name='album' type='hidden' value='<?= json_encode($album) ?>'>                      
+                        <button class="btn btn-outline-success" type="submit">Favori</button>
+                    </form>     
                 </div>
             </div>
         </a>

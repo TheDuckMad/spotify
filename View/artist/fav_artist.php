@@ -10,13 +10,6 @@ use App\Entity\Artist;
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-
-
-<form class="d-flex searchform mb-4" action="/artist/index/" method="get">
-    <input class="form-control searchbar" type="search" placeholder="Search" aria-label="Search" name="name">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
-
 <div class="row">
     <?php
         foreach ($artists as $artist):
@@ -35,9 +28,20 @@ use App\Entity\Artist;
                 <div class="card-body">
                     <h5 class="card-title">Name : <?= $artist->getName()?></h5>
                     <p class="card-text">Followers : <?= $artist->getFollowers()?></p>
-                    <p class="card-text">Genres : <?= $artist->getGenders()?></p>
-                    <form class="d-flex searchform mb-4" action="/artist/delete_artist?=<?= $artist->id;?>" method="post">    
-                                       
+                    <p class="card-text">Genres : 
+                        <?php 
+                        if (count($artist->getGenders()) === 0) {
+                            echo 'Aucun';
+                        } else { 
+                            foreach($artist->getGenders() as $key => $gender) {
+                                if ($key === 0) 
+                                    echo $gender;
+                                echo ', ' . $gender;
+                            }
+                        } ?>
+                    </p>
+                    <form class="d-flex searchform mb-4" action="/artist/deleteFavArtist" method="post">   
+                        <input type='hidden' value='<?= $artist->id;?>' name='id'>
                         <button class="btn btn-outline-success" type="submit">Delete</button>
                     </form>            
                 </div>
